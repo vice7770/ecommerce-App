@@ -1,12 +1,36 @@
-import { defineConfig } from "astro/config";
-import vercel from "@astrojs/vercel/serverless";
+import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
 import tailwind from "@astrojs/tailwind";
-import solidJs from "@astrojs/solid-js";
+
+import react from "@astrojs/react";
+
+// https://astro.build/config
+import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://astro-supabase-auth.vercel.app",
-  output: "server",
+  site: 'https://example.com',
+  integrations: [tailwind({
+    config: {
+      applyBaseStyles: false
+    }
+  }), mdx(), sitemap(), react()],
+  output: "hybrid",
   adapter: vercel(),
-  integrations: [tailwind(), solidJs()],
+  vite: {
+    build: {
+      rollupOptions: {
+        external: ['@/stores/partnerSelected']
+      }
+    },
+    resolve: {
+      alias: {
+        '@': '/src'
+      }
+    }
+  },
+  redirects: {
+    '/shop/' : '/shop/[...slug]',
+  }
 });
