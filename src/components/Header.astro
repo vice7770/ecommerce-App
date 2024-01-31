@@ -26,7 +26,7 @@ const email = data?.user?.email;
 
 const { url } = Astro.request;
 const urlToRedirect = new URL(url).pathname + "/";
-// const newUrl = new URL("/signin", SITE_URL);
+const newUrl = new URL("/signin", SITE_URL);
 // const newUrlFavorite = new URL("/signin", SITE_URL);
 // newUrl.searchParams.append('redirectUrl', urlToRedirect);
 // const signinUrl = newUrl.toString();
