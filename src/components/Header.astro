@@ -26,15 +26,15 @@ const email = data?.user?.email;
 
 let urlToRedirect = "/";
 if (Astro.request) {
-  const { url } = Astro.request;
-  urlToRedirect = new URL(url).pathname + "/";
+	const { url } = Astro.request;
+	urlToRedirect = new URL(url).pathname + "/";
+	const newUrl = new URL("/signin", SITE_URL);
+	const newUrlFavorite = new URL("/signin", SITE_URL);
+	newUrl.searchParams.append('redirectUrl', urlToRedirect);
+	const signinUrl = newUrl.toString();
+	newUrlFavorite.searchParams.append('redirectUrl', "/favorites");
+	const favoritesUrl = newUrlFavorite.toString();
 }
-const newUrl = new URL("/signin", SITE_URL);
-const newUrlFavorite = new URL("/signin", SITE_URL);
-newUrl.searchParams.append('redirectUrl', urlToRedirect);
-const signinUrl = newUrl.toString();
-newUrlFavorite.searchParams.append('redirectUrl', "/favorites");
-const favoritesUrl = newUrlFavorite.toString();
 
 ---
 
