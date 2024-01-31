@@ -11,12 +11,12 @@ import {
 } from "@/components/ui/carousel"
 
 import { partners, type Partner } from '@/consts';
-import { $selectedPartner, setSelectedPartner } from "@/stores/partnerSelected";
+import { selectedPartner, setSelectedPartner } from "@/stores/partnerSelected";
 import { useStore } from "@nanostores/react";
 
 export function CarouselHomePartners() {
   const [api, setApi] = useState<CarouselApi>()
-  const selectedPartner = useStore($selectedPartner)
+  const $selectedPartner = useStore(selectedPartner)
 
   useEffect(() => {
     if (!api) {
@@ -33,8 +33,8 @@ export function CarouselHomePartners() {
     if (!api) {
       return
     }
-    api.scrollTo(selectedPartner?.id || 0)
-  }, [selectedPartner])
+    api.scrollTo($selectedPartner?.id || 0)
+  }, [$selectedPartner])
 
   return (
     <Carousel 
