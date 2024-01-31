@@ -4,7 +4,7 @@ import { useStore } from "@nanostores/react";
 import { useIntersectionObserver } from '../lib/Hooks/useIntersectionObserver';
 import { useMeasure } from '../lib/Hooks/useMeasure';
 import { partners, type Partner } from '@/consts';
-import { $selectedPartner, setSelectedPartner } from '../stores/partnerSelected';
+import { selectedPartner, setSelectedPartner } from '../stores/partnerSelected';
 import { CarouselHomePartners } from "./ui/carouselHomePartners";
 
 
@@ -23,7 +23,7 @@ const PartnersMap = (props : Props) => {
     freezeOnceVisible: true,
   })
   const isVisible = !!entry?.isIntersecting
-  const selectedPartner = useStore($selectedPartner)
+  const $selectedPartner = useStore(selectedPartner)
 
   function handlePinClick( pin : Partner ) {
     setSelectedPartner(pin);
@@ -44,7 +44,7 @@ const PartnersMap = (props : Props) => {
                 top: offsetTop + ((pin.y / 100) * height),
               }}
             >
-              <img className={` ${pin.id === selectedPartner?.id ? 'pin-selected' : 'pin-image'}`} draggable="false" src={mapPin} alt="" width="32" height="32" onClick={() => handlePinClick(pin)}/>
+              <img className={` ${pin.id === $selectedPartner?.id ? 'pin-selected' : 'pin-image'}`} draggable="false" src={mapPin} alt="" width="32" height="32" onClick={() => handlePinClick(pin)}/>
             </div>
           ))
         )}
