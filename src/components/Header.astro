@@ -35,19 +35,19 @@ const favoritesUrl = newUrlFavorite.toString();
 ---
 
 <header>
-	<nav>
-		<div class="flex h-max-full">
+	<nav class="w-full grid grid-cols-3 gap-4">
+		<div class="flex justify-start h-max-full ">
 			<a class="flex items-center justify-center p-0 !p-0 " href="/">
 				<span class="sr-only">Georgia</span>
 				<img src="/georgia-flag.png" alt="GeorgiaFlag" width="96" draggable="false"/>
 			</a>
 		</div>
-		<div class="internal-links">
+		<div class="flex justify-center internal-links">
 			{headerLinks.map((link) => (
 				<HeaderLink href={link.href}>{link.text}</HeaderLink>
 			))}
 		</div>
-		<div class="social-links">
+		<div class="flex justify-end social-links">
 			<!-- <a href="https://m.webtoo.ls/@astro" target="_blank">
 				<span class="sr-only">Follow Astro on Mastodon</span>
 				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
@@ -59,7 +59,7 @@ const favoritesUrl = newUrlFavorite.toString();
 			</a> -->
 			<div class="flex items-center justify-center space-x-8">
 				<div class="mb-1">
-					<a href={email ?? "/favorites"}>
+					<a href={email ? "/favorites" : favoritesUrl}>
 						<button class=" bg-white hover:bg-gray-300 rounded-full">
 							<img width="40" height="40" src="https://img.icons8.com/sf-ultralight/50/hearts.png" alt="hearts"/>
 						</button>
@@ -73,7 +73,7 @@ const favoritesUrl = newUrlFavorite.toString();
 						<ProfileButton client:load/>
 					</div>
 				  ) : (
-					<a href={''} class="flex items-center justify-center">
+					<a href={signinUrl} class="flex items-center justify-center">
 						<button 
 							class="flex items-center justify-center bg-white text-black font-bold py-2 px-4 rounded-md hover:text-gray-500"
 						>
@@ -81,6 +81,7 @@ const favoritesUrl = newUrlFavorite.toString();
 						</button>
 					</a>
 				)}
+			</div>
 		</div>
 	</nav>
 </header>
@@ -99,11 +100,6 @@ const favoritesUrl = newUrlFavorite.toString();
 	h2 a,
 	h2 a.active {
 		text-decoration: none;
-	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
 	}
 	nav a {
 		padding: 1em 0.5em;
