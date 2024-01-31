@@ -12,7 +12,7 @@ export type Partner = {
 export const SITE_TITLE = 'Astro Blog';
 export const SITE_DESCRIPTION = 'Welcome to my website!';
 
-export const SITE_URL = import.meta.env.MODE === 'development' ? 'http://localhost:4321' : "fromgeorgia.com";
+export const SITE_URL = import.meta.env.MODE === 'development' ? 'http://localhost:4321' : "https://fromgeorgia.com/";
 
 // export const SITE_URL = 'http://localhost:4321';
 
