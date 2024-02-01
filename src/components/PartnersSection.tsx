@@ -17,12 +17,16 @@ const PartnersMap = () => {
   const entry = useIntersectionObserver(ref, {
     freezeOnceVisible: true,
   })
-  const isVisible = !!entry?.isIntersecting && width > 0 && height > 0
+  let isVisible = false;
   const $selectedPartner = useStore(selectedPartner)
 
   function handlePinClick( pin : Partner ) {
     setSelectedPartner(pin);
   }
+
+  useEffect(() => {
+    isVisible = !!entry?.isIntersecting && height > 0 && width > 0;
+  }, [entry, height, width])
   
   return (
     <div className="relative">
