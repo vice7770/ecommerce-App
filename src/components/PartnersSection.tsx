@@ -15,18 +15,18 @@ const PartnersMap = () => {
   const ref = useRef<HTMLDivElement | null>(null)
   const [refImage, { height, offsetLeft, offsetTop, width }] = useMeasure();
   const entry = useIntersectionObserver(ref, {
-    freezeOnceVisible: true,
+    freezeOnceVisible: false,
   })
-  let isVisible = false;
+  let isVisible = !!entry?.isIntersecting;
   const $selectedPartner = useStore(selectedPartner)
 
   function handlePinClick( pin : Partner ) {
     setSelectedPartner(pin);
   }
 
-  useEffect(() => {
-    isVisible = !!entry?.isIntersecting && height > 0 && width > 0;
-  }, [entry, height, width])
+  // useEffect(() => {
+  //   isVisible = !!entry?.isIntersecting && height > 0 && width > 0;
+  // }, [entry, height, width])
   
   return (
     <div className="relative">
