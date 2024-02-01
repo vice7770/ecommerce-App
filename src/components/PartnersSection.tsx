@@ -15,8 +15,7 @@ type Props = {
     georgiaPartnersImage : string;
 };
   
-const PartnersMap = (props : Props) => {
-  const { georgiaPartnersImage } = props;
+const PartnersMap = () => {
   const ref = useRef<HTMLDivElement | null>(null)
   const [refImage, { height, offsetLeft, offsetTop, width }] = useMeasure();
   const entry = useIntersectionObserver(ref, {
@@ -32,7 +31,7 @@ const PartnersMap = (props : Props) => {
   return (
     <div className="relative">
         <div ref={ref} className="flex items-center justify-center bg-center bg-cover">
-            {georgiaPartnersImage && <img ref={refImage} draggable="false" src={georgiaPartnersImage} alt=""/>}  
+            {georgiaPartnersImage && <img draggable="false" src={georgiaPartnersImage} alt=""/>}  
         </div>
         {isVisible && width !== 0 && height !== 0 && (
           partners.map((pin: Partner) => (
@@ -56,6 +55,7 @@ const PartnersMap = (props : Props) => {
 
 const PartnersSection = () => {
   const [isLoading, setIsLoading] = useState(true);
+  // const [refImage, { height, offsetLeft, offsetTop, width }] = useMeasure();
   useEffect(() => {
     setIsLoading(false);
   }, []);
@@ -81,7 +81,7 @@ const PartnersSection = () => {
       <h2 className="text-4xl font-semibold text-center text-gray-800 tracking-wide leading-relaxed">
         Meet our partners
       </h2>
-      <PartnersMap georgiaPartnersImage={georgiaPartnersImage}/>
+      <PartnersMap />
       <div className="flex items-center justify-center p-4 mb-8">
         {/* <CarouselHomePartners/> */}
       </div>
