@@ -44,7 +44,6 @@ const PartnersMap = (props : Props) => {
                 top: offsetTop + ((pin.y / 100) * height),
               }}
             >
-              <p>{pin.x ?? 0} </p>
               <img className={` ${pin.id === $selectedPartner?.id ? 'pin-selected' : 'pin-image'}`} draggable="false" src={mapPin} alt="" width="32" height="32" onClick={() => handlePinClick(pin)}/>
             </div>
           ))
