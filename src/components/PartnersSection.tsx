@@ -31,7 +31,7 @@ const PartnersMap = () => {
   return (
     <div className="relative">
         <div ref={ref} className="flex items-center justify-center bg-center bg-cover">
-            {georgiaPartnersImage && <img draggable="false" src={georgiaPartnersImage} alt=""/>}  
+            {georgiaPartnersImage && <img ref={refImage} draggable="false" src={georgiaPartnersImage} alt=""/>}  
         </div>
         {isVisible && width !== 0 && height !== 0 && (
           partners.map((pin: Partner) => (
