@@ -17,7 +17,7 @@ const PartnersMap = () => {
   const entry = useIntersectionObserver(ref, {
     freezeOnceVisible: true,
   })
-  const isVisible = !!entry?.isIntersecting
+  const isVisible = !!entry?.isIntersecting && width > 0 && height > 0
   const $selectedPartner = useStore(selectedPartner)
 
   function handlePinClick( pin : Partner ) {
@@ -29,7 +29,7 @@ const PartnersMap = () => {
         <div ref={ref} className="flex items-center justify-center bg-center bg-cover">
             {georgiaPartnersImage && <img draggable="false" ref={refImage} src={georgiaPartnersImage} alt=""/>}  
         </div>
-        {isVisible && georgiaPartnersImage && (
+        {isVisible && (
           partners.map((pin: Partner) => (
             <div
               key={pin.id}
