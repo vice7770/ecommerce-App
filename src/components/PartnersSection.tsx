@@ -5,7 +5,7 @@ import { useIntersectionObserver } from '../lib/Hooks/useIntersectionObserver';
 import { useMeasure } from '../lib/Hooks/useMeasure';
 // import { partners, type Partner } from '@/consts';
 // import { selectedPartner, setSelectedPartner } from '../stores/partnerSelected';
-import { CarouselHomePartners } from "./ui/carouselHomePartners";
+// import { CarouselHomePartners } from "./ui/carouselHomePartners";
 
 
 const georgiaPartnersImage = "/georgia-map-partners.png";
@@ -58,21 +58,21 @@ const PartnersSection = () => {
     setIsLoading(false);
   }, []);
 
-  if (isLoading) {
-      return (
-        <div>
-          <h2 className="text-4xl font-semibold text-center text-gray-800 tracking-wide leading-relaxed">
-            Meet our partners
-          </h2>
-          <div className="relative">
-            <div className="flex items-center justify-center bg-center bg-cover">
-                {georgiaPartnersImage && <img draggable="false" src={georgiaPartnersImage} alt=""/>}  
-            </div>
-          </div>
-          <div className="flex items-center justify-center h-[350px] p-4 mb-8"/>
-        </div>
-      )
-  }
+  // if (isLoading) {
+  //     return (
+  //       <div>
+  //         <h2 className="text-4xl font-semibold text-center text-gray-800 tracking-wide leading-relaxed">
+  //           Meet our partners
+  //         </h2>
+  //         <div className="relative">
+  //           <div className="flex items-center justify-center bg-center bg-cover">
+  //               {georgiaPartnersImage && <img draggable="false" src={georgiaPartnersImage} alt=""/>}  
+  //           </div>
+  //         </div>
+  //         <div className="flex items-center justify-center h-[350px] p-4 mb-8"/>
+  //       </div>
+  //     )
+  // }
 
   return (
     <div>
