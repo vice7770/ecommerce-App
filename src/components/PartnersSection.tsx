@@ -15,7 +15,7 @@ const PartnersMap = () => {
   const ref = useRef<HTMLDivElement | null>(null)
   const [refImage, { height, offsetLeft, offsetTop, width }] = useMeasure();
   const entry = useIntersectionObserver(ref, {
-    freezeOnceVisible: false,
+    freezeOnceVisible: true,
   })
   let isVisible = !!entry?.isIntersecting;
   const $selectedPartner = useStore(selectedPartner)
@@ -33,7 +33,7 @@ const PartnersMap = () => {
         <div ref={ref} className="flex items-center justify-center bg-center bg-cover">
             {georgiaPartnersImage && <img draggable="false" ref={refImage} src={georgiaPartnersImage} alt=""/>}  
         </div>
-        {isVisible && (
+        {isVisible && refImage && (
           partners.map((pin: Partner) => (
             <div
               key={pin.id}
