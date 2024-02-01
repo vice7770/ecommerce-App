@@ -52,7 +52,9 @@ const PartnersMap = ({ height, width, offsetLeft, offsetTop} : {height: number, 
 const PartnersSection = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [refImage, { height, offsetLeft, offsetTop, width }] = useMeasure();
+  const [imageDimensions, setImageDimensions] = useState({height: 0, width: 0, offsetLeft: 0, offsetTop: 0});
   useEffect(() => {
+    setImageDimensions({height, width, offsetLeft, offsetTop});
     setIsLoading(false);
   }, []);
 
@@ -77,7 +79,7 @@ const PartnersSection = () => {
       <h2 className="text-4xl font-semibold text-center text-gray-800 tracking-wide leading-relaxed">
         Meet our partners
       </h2>
-      {height > 0 && <PartnersMap height={height} width={width} offsetLeft={offsetLeft} offsetTop={offsetTop}/>}
+      {imageDimensions && <PartnersMap height={imageDimensions.height} width={imageDimensions.width} offsetLeft={imageDimensions.offsetLeft} offsetTop={imageDimensions.offsetTop}/>}
       <div className="flex items-center justify-center p-4 mb-8">
         {/* <CarouselHomePartners/> */}
       </div>
