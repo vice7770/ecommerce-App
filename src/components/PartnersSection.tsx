@@ -11,9 +11,9 @@ import { selectedPartner, setSelectedPartner } from '../stores/partnerSelected';
 const georgiaPartnersImage = "/georgia-map-partners.png";
 const mapPin = "map-pin.png";
   
-const PartnersMap = ({ height, width, offsetLeft, offsetTop} : {height: number, width: number, offsetLeft:number, offsetTop: number}) => {
+const PartnersMap = () => {
   const ref = useRef<HTMLDivElement | null>(null)
-  // const [refImage, { height, offsetLeft, offsetTop, width }] = useMeasure();
+  const [refImage, { height, offsetLeft, offsetTop, width }] = useMeasure();
   const entry = useIntersectionObserver(ref, {
     freezeOnceVisible: true,
   })
@@ -27,7 +27,7 @@ const PartnersMap = ({ height, width, offsetLeft, offsetTop} : {height: number, 
   return (
     <div className="relative">
         <div ref={ref} className="flex items-center justify-center bg-center bg-cover">
-            {georgiaPartnersImage && <img draggable="false" src={georgiaPartnersImage} alt=""/>}  
+            {georgiaPartnersImage && <img ref={refImage} draggable="false" src={georgiaPartnersImage} alt=""/>}  
         </div>
         {isVisible && (
           partners.map((pin: Partner) => (
@@ -39,8 +39,6 @@ const PartnersMap = ({ height, width, offsetLeft, offsetTop} : {height: number, 
                 top: offsetTop + ((pin.y / 100) * height),
               }}
             >
-              <p>{pin.x ?? 0 } </p>
-              <p>{height } </p>
               <img className={` ${pin.id === $selectedPartner?.id ? 'pin-selected' : 'pin-image'}`} draggable="false" src={mapPin} alt="" width="32" height="32" onClick={() => handlePinClick(pin)}/>
             </div>
           ))
@@ -51,14 +49,6 @@ const PartnersMap = ({ height, width, offsetLeft, offsetTop} : {height: number, 
 
 const PartnersSection = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [refImage, { height, offsetLeft, offsetTop, width }] = useMeasure();
-  const [imageDimensions, setImageDimensions] = useState({height: 0, width: 0, offsetLeft: 0, offsetTop: 0});
-
-  useEffect(() => {
-    if (height === 0) return;
-    setImageDimensions({height, width, offsetLeft, offsetTop});
-  }, [height, width, offsetLeft, offsetTop]);
-
   useEffect(() => {
     setIsLoading(false);
   }, []);
@@ -71,7 +61,7 @@ const PartnersSection = () => {
           </h2>
           <div className="relative">
             <div className="flex items-center justify-center bg-center bg-cover">
-                {georgiaPartnersImage && <img ref={refImage} draggable="false" src={georgiaPartnersImage} alt=""/>}  
+                {georgiaPartnersImage && <img draggable="false" src={georgiaPartnersImage} alt=""/>}  
             </div>
           </div>
           <div className="flex items-center justify-center h-[350px] p-4 mb-8"/>
@@ -84,7 +74,7 @@ const PartnersSection = () => {
       <h2 className="text-4xl font-semibold text-center text-gray-800 tracking-wide leading-relaxed">
         Meet our partners
       </h2>
-      {imageDimensions.height > 0 && <PartnersMap height={imageDimensions.height} width={imageDimensions.width} offsetLeft={imageDimensions.offsetLeft} offsetTop={imageDimensions.offsetTop}/>}
+      <PartnersMap/>
       <div className="flex items-center justify-center p-4 mb-8">
         {/* <CarouselHomePartners/> */}
       </div>
