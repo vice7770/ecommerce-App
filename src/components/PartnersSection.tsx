@@ -11,9 +11,9 @@ import { selectedPartner, setSelectedPartner } from '../stores/partnerSelected';
 const georgiaPartnersImage = "/georgia-map-partners.png";
 const mapPin = "map-pin.png";
   
-const PartnersMap = ({ height, width, offsetLeft, offsetTop} : {height: number, width: number, offsetLeft:number, offsetTop: number}) => {
+const PartnersMap = () => {
   const ref = useRef<HTMLDivElement | null>(null)
-  // const [refImage, { height, offsetLeft, offsetTop, width }] = useMeasure();
+  const [refImage, { height, offsetLeft, offsetTop, width }] = useMeasure();
   const entry = useIntersectionObserver(ref, {
     freezeOnceVisible: true,
   })
@@ -27,9 +27,9 @@ const PartnersMap = ({ height, width, offsetLeft, offsetTop} : {height: number, 
   return (
     <div className="relative">
         <div ref={ref} className="flex items-center justify-center bg-center bg-cover">
-            {georgiaPartnersImage && <img draggable="false" src={georgiaPartnersImage} alt=""/>}  
+            {georgiaPartnersImage && <img draggable="false" ref={refImage} src={georgiaPartnersImage} alt=""/>}  
         </div>
-        {isVisible && width !== 0 && height !== 0 && (
+        {isVisible && georgiaPartnersImage && (
           partners.map((pin: Partner) => (
             <div
               key={pin.id}
@@ -51,7 +51,7 @@ const PartnersMap = ({ height, width, offsetLeft, offsetTop} : {height: number, 
 
 const PartnersSection = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [refImage, { height, offsetLeft, offsetTop, width }] = useMeasure();
+  // const [refImage, { height, offsetLeft, offsetTop, width }] = useMeasure();
   useEffect(() => {
     setIsLoading(false);
   }, []);
@@ -64,7 +64,7 @@ const PartnersSection = () => {
           </h2>
           <div className="relative">
             <div className="flex items-center justify-center bg-center bg-cover">
-                {georgiaPartnersImage && <img ref={refImage} draggable="false" src={georgiaPartnersImage} alt=""/>}  
+                {georgiaPartnersImage && <img draggable="false" src={georgiaPartnersImage} alt=""/>}  
             </div>
           </div>
           <div className="flex items-center justify-center h-[350px] p-4 mb-8"/>
@@ -77,7 +77,7 @@ const PartnersSection = () => {
       <h2 className="text-4xl font-semibold text-center text-gray-800 tracking-wide leading-relaxed">
         Meet our partners
       </h2>
-      <PartnersMap height={height} width={width} offsetLeft={offsetLeft} offsetTop={offsetTop}/>
+      <PartnersMap/>
       <div className="flex items-center justify-center p-4 mb-8">
         {/* <CarouselHomePartners/> */}
       </div>
