@@ -15,42 +15,42 @@ type Props = {
     georgiaPartnersImage : string;
 };
   
-const PartnersMap = (props : Props) => {
-  const { georgiaPartnersImage } = props;
-  const ref = useRef<HTMLDivElement | null>(null)
-  const [refImage, { height, offsetLeft, offsetTop, width }] = useMeasure();
-  const entry = useIntersectionObserver(ref, {
-    freezeOnceVisible: true,
-  })
-  const isVisible = !!entry?.isIntersecting
-  const $selectedPartner = useStore(selectedPartner)
+// const PartnersMap = (props : Props) => {
+//   const { georgiaPartnersImage } = props;
+//   const ref = useRef<HTMLDivElement | null>(null)
+//   const [refImage, { height, offsetLeft, offsetTop, width }] = useMeasure();
+//   const entry = useIntersectionObserver(ref, {
+//     freezeOnceVisible: true,
+//   })
+//   const isVisible = !!entry?.isIntersecting
+//   const $selectedPartner = useStore(selectedPartner)
 
-  function handlePinClick( pin : Partner ) {
-    setSelectedPartner(pin);
-  }
+//   function handlePinClick( pin : Partner ) {
+//     setSelectedPartner(pin);
+//   }
   
-  return (
-    <div className="relative">
-        <div ref={ref} className="flex items-center justify-center bg-center bg-cover">
-            {georgiaPartnersImage && <img ref={refImage} draggable="false" src={georgiaPartnersImage} alt=""/>}  
-        </div>
-        {isVisible && (
-          partners.map((pin: Partner) => (
-            <div
-              key={pin.id}
-              className="absolute z-10 animate-pin"
-              style={{
-                left: offsetLeft + ((pin.x / 100) * width),
-                top: offsetTop + ((pin.y / 100) * height),
-              }}
-            >
-              <img className={` ${pin.id === $selectedPartner?.id ? 'pin-selected' : 'pin-image'}`} draggable="false" src={mapPin} alt="" width="32" height="32" onClick={() => handlePinClick(pin)}/>
-            </div>
-          ))
-        )}
-    </div>
-  )
-  }
+//   return (
+//     <div className="relative">
+//         <div ref={ref} className="flex items-center justify-center bg-center bg-cover">
+//             {georgiaPartnersImage && <img ref={refImage} draggable="false" src={georgiaPartnersImage} alt=""/>}  
+//         </div>
+//         {isVisible && (
+//           partners.map((pin: Partner) => (
+//             <div
+//               key={pin.id}
+//               className="absolute z-10 animate-pin"
+//               style={{
+//                 left: offsetLeft + ((pin.x / 100) * width),
+//                 top: offsetTop + ((pin.y / 100) * height),
+//               }}
+//             >
+//               <img className={` ${pin.id === $selectedPartner?.id ? 'pin-selected' : 'pin-image'}`} draggable="false" src={mapPin} alt="" width="32" height="32" onClick={() => handlePinClick(pin)}/>
+//             </div>
+//           ))
+//         )}
+//     </div>
+//   )
+// }
 
 const PartnersSection = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -79,7 +79,7 @@ const PartnersSection = () => {
       <h2 className="text-4xl font-semibold text-center text-gray-800 tracking-wide leading-relaxed">
         Meet our partners
       </h2>
-      <PartnersMap georgiaPartnersImage={georgiaPartnersImage}/>
+      {/* <PartnersMap georgiaPartnersImage={georgiaPartnersImage}/> */}
       <div className="flex items-center justify-center p-4 mb-8">
         <CarouselHomePartners/>
       </div>
