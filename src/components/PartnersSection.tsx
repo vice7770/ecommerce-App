@@ -36,7 +36,6 @@ const PartnersMap = (props : Props) => {
         </div>
         {isVisible && (
           partners.map((pin: Partner) => (
-            console.log("pin position", pin.x, pin.y),
             <div
               key={pin.id}
               className="absolute z-10 animate-pin"
@@ -45,6 +44,7 @@ const PartnersMap = (props : Props) => {
                 top: offsetTop + ((pin.y / 100) * height),
               }}
             >
+              <p>{pin.x} </p>
               <img className={` ${pin.id === $selectedPartner?.id ? 'pin-selected' : 'pin-image'}`} draggable="false" src={mapPin} alt="" width="32" height="32" onClick={() => handlePinClick(pin)}/>
             </div>
           ))
