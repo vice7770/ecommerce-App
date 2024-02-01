@@ -34,7 +34,7 @@ const PartnersMap = (props : Props) => {
         <div ref={ref} className="flex items-center justify-center bg-center bg-cover">
             {georgiaPartnersImage && <img ref={refImage} draggable="false" src={georgiaPartnersImage} alt=""/>}  
         </div>
-        {isVisible && (width && height) && (
+        {isVisible && width !== 0 && height !== 0 && (
           partners.map((pin: Partner) => (
             <div
               key={pin.id}
@@ -45,7 +45,7 @@ const PartnersMap = (props : Props) => {
               }}
             >
               <p>{pin.x ?? 0 } </p>
-              <p>{height ?? 0 } </p>
+              <p>{height } </p>
               <img className={` ${pin.id === $selectedPartner?.id ? 'pin-selected' : 'pin-image'}`} draggable="false" src={mapPin} alt="" width="32" height="32" onClick={() => handlePinClick(pin)}/>
             </div>
           ))
