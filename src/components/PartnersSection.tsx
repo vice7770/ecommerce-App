@@ -34,7 +34,7 @@ const PartnersMap = (props : Props) => {
         <div ref={ref} className="flex items-center justify-center bg-center bg-cover">
             {georgiaPartnersImage && <img ref={refImage} draggable="false" src={georgiaPartnersImage} alt=""/>}  
         </div>
-        {isVisible && (
+        {isVisible && (width && height) && (
           partners.map((pin: Partner) => (
             <div
               key={pin.id}
