@@ -1,6 +1,5 @@
 ---
 import Base from "../layout/Base.astro";
-export const prerender = true;
 export const title = "Home";
 
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
@@ -37,6 +36,7 @@ const { data } = await supabase.auth.setSession({
 
 //   return redirect("/");
 // }
+export const prerender = true
 ---
 
 <Base title={title}>
